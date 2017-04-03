@@ -3258,8 +3258,15 @@ xmlParseNameComplex(xmlParserCtxtPtr ctxt) {
 	    c = CUR_CHAR(l);
 	}
     }
-    if ((*ctxt->input->cur == '\n') && (ctxt->input->cur[-1] == '\r'))
+    if (ctxt->input->cur > ctxt->input->base && (*ctxt->input->cur == '\n') && (ctxt->input->cur[-1] == '\r')) {
+        if (ctxt->input->base > ctxt->input->cur - (len + 1)) {
+            return(NULL);
+        }
         return(xmlDictLookup(ctxt->dict, ctxt->input->cur - (len + 1), len));
+    }
+    if (ctxt->input->base > ctxt->input->cur - len) {
+        return(NULL);
+    }
     return(xmlDictLookup(ctxt->dict, ctxt->input->cur - len, len));
 }
 
