@@ -12,6 +12,7 @@
 #include "libxml.h"
 
 #include <string.h>
+#include <limits.h>
 
 #include <libxml/xmlmemory.h>
 #include <libxml/uri.h>
@@ -325,15 +326,16 @@ static int
 xmlParse3986Port(xmlURIPtr uri, const char **str)
 {
     const char *cur = *str;
-
+    unsigned port = 0; /* unsigned for defined overflow behavior */
+    
     if (ISA_DIGIT(cur)) {
-	if (uri != NULL)
-	    uri->port = 0;
 	while (ISA_DIGIT(cur)) {
-	    if (uri != NULL)
-		uri->port = uri->port * 10 + (*cur - '0');
-	    cur++;
+	    port = port * 10 + (*cur - '0');
+	
+            cur++;
 	}
+	if (uri != NULL)
+	    uri->port = port & USHRT_MAX; /* port value modulo INT_MAX+1 */
 	*str = cur;
 	return(0);
     }
