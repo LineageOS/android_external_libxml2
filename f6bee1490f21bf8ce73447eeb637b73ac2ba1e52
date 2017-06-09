@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da87b5cf_1eddd370",
+        "filename": "xpointer.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1347,
+      "author": {
+        "id": 17037
+      },
+      "writtenOn": "2017-06-09T08:22:15Z",
+      "side": 1,
+      "message": "I haven\u0027t seen this style before, a tab then spaces.",
+      "range": {
+        "startLine": 1347,
+        "startChar": 0,
+        "endLine": 1347,
+        "endChar": 18
+      },
+      "revId": "f6bee1490f21bf8ce73447eeb637b73ac2ba1e52",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
