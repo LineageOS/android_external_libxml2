@@ -7024,6 +7024,8 @@ xmlParseReference(xmlParserCtxtPtr ctxt) {
 		   (ret != XML_WAR_UNDECLARED_ENTITY)) {
 	    xmlFatalErrMsgStr(ctxt, XML_ERR_UNDECLARED_ENTITY,
 		     "Entity '%s' failed to parse\n", ent->name);
+            if (ent->content != NULL)
+                ent->content[0] = 0;
 	} else if (list != NULL) {
 	    xmlFreeNodeList(list);
 	    list = NULL;
